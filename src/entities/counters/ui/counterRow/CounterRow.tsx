@@ -1,9 +1,8 @@
 import GvsSVG from '@/shared/assets/icons/gvs.svg';
 import HvsSVG from '@/shared/assets/icons/hvs.svg';
-import TrashSVG from '@/shared/assets/icons/trash.svg';
-import { IconUI } from '@/shared/ui/iconUI/IconUI';
 import { TextUI } from '@/shared/ui/textUI/TextUI';
 import cls from 'classnames';
+import { ReactElement } from 'react';
 import { Counter, CounterType } from '../../model/types/counter';
 import styles from './CounterRow.module.sass';
 import {
@@ -14,6 +13,7 @@ import {
 interface CounterRowProps {
   rowIndex: number;
   dataRow: Counter;
+  deleteBtn: ReactElement;
   className?: string;
 }
 
@@ -25,6 +25,7 @@ const mapTypeToTypeName: Record<CounterType, CounterCellTypeProps> = {
 export const CounterRow = ({
   rowIndex,
   dataRow,
+  deleteBtn,
   className,
 }: CounterRowProps) => {
   const data = Object.entries(dataRow);
@@ -49,17 +50,12 @@ export const CounterRow = ({
           <TextUI
             key={value[0]}
             text={value[1]}
+            color={value[0] === 'description' ? 'grey' : 'primary'}
             className={styles.counterCell}
           />
         )
       )}
-      <div className={styles.buttonWrapper}>
-        <IconUI
-          Svg={TrashSVG}
-          classNameBtn={styles.iconBtn}
-          onClick={() => {}}
-        />
-      </div>
+      <div className={styles.buttonWrapper}>{deleteBtn}</div>
     </div>
   );
 };

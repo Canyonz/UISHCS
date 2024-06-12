@@ -1,0 +1,28 @@
+.pagination
+  display: flex
+  justify-content: end
+  gap: 8px
+
+  .paginationItem
+    padding: 8px 12px
+    border: 1px solid #CED5DE
+    border-radius: 6px
+    line-height: 16px
+    cursor: pointer
+    background-color: #fff
+
+    &.selected
+      background-color: #F2F5F8
+
+    &:hover
+      background-color: #F2F5F8
+
+    &:active
+      background-color: darken(#F2F5F8,5%)
+
+  .paginationItemEllipsis
+    padding: 8px 12px
+    border: 1px solid #CED5DE
+    border-radius: 6px
+    line-height: 16px
+    background-color: #fff

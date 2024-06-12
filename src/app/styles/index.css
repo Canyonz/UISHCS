@@ -3,5 +3,7 @@
 @import 'variables/global.css';
 
 .app {
+  min-height: 100vh;
   font: var(--font-text);
+  background-color: #f8f9fa;
 }

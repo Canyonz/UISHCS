@@ -1,23 +1,22 @@
 .counterRow
   display: grid
   grid-template-columns: 48px 120px 160px 128px 146px minmax(430px,1fr) 1fr min-content
+  align-items: center
   padding: 6px 0
-
   background-color: var(--counterRowColor)
+  border-bottom: 1px solid #E0E5EB
+  transition: background-color 0.33s
   cursor: pointer
-
-  &:hover
-    background-color: var(--counterRowColor-hover)
 
   .counterCell
     padding: 10px 12px
 
-
   .buttonWrapper
+    transition: opacity 0.33s
     padding: 0 12px
+    opacity: 0
 
-    .iconBtn
-      color: var(--iconTrashColor)
-
-      &:hover
-        color: var(--iconTrashColor-hover)
+  &:hover
+    background-color: var(--counterRowColor-hover)
+    .buttonWrapper
+      opacity: 100
