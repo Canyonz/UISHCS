@@ -1,0 +1,17 @@
+:root {
+  --primaryColor: #1f2939;
+  --greyColor: #5e6674;
+  --greyNeutralColor: #697180;
+
+  --iconBtnBgColor: #fee3e3;
+  --iconBtnBgColor-hover: #fed7d7;
+  --iconBtnBgColor-disabled: #f2f5f8;
+
+  --iconTrashColor: #c53030;
+  --iconTrashColor-hover: #9b2c2c;
+
+  --iconBtnColor-disabled: #9da6b4;
+
+  --counterRowColor: #fff;
+  --counterRowColor-hover: #f7f8f9;
+}

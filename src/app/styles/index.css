@@ -1,1 +1,7 @@
 @import 'reset.css';
+@import 'theme/base.css';
+@import 'variables/global.css';
+
+.app {
+  font: var(--font-text);
+}

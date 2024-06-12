@@ -1,0 +1,23 @@
+.counterRow
+  display: grid
+  grid-template-columns: 48px 120px 160px 128px 146px minmax(430px,1fr) 1fr min-content
+  padding: 6px 0
+
+  background-color: var(--counterRowColor)
+  cursor: pointer
+
+  &:hover
+    background-color: var(--counterRowColor-hover)
+
+  .counterCell
+    padding: 10px 12px
+
+
+  .buttonWrapper
+    padding: 0 12px
+
+    .iconBtn
+      color: var(--iconTrashColor)
+
+      &:hover
+        color: var(--iconTrashColor-hover)

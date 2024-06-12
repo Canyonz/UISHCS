@@ -1,0 +1,22 @@
+.iconUI
+  display: block
+
+.btnIconUI
+  display: block
+  padding: 12px
+  background-color: var(--iconBtnBgColor)
+  border-radius: 8px
+  border: none
+  cursor: pointer
+  transition: background-color 0.33s, color 0.33s
+
+  &:hover
+    background-color: var(--iconBtnBgColor-hover)
+
+  &:active
+    background-color: var(--iconBtnBgColor)
+
+  &:disabled
+    cursor: auto
+    background-color: var(--iconBtnBgColor-disabled)
+    color: var(--iconBtnColor-disabled)
