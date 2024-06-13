@@ -43,7 +43,7 @@ export const getCounters = async ({ limit, offset }: GetCountersProps) => {
     }));
     const data = await Promise.all(areaPromises);
 
-    return { count: response.data.count, data };
+    return { count: response.data.count, results: data };
   } catch (error) {
     console.log(error);
   }

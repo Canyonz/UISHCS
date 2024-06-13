@@ -12,5 +12,5 @@ export interface Counter {
 
 export interface CounterSchema {
   count: number;
-  result: Counter[];
+  results: Counter[];
 }
