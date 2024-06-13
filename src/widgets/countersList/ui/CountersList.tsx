@@ -19,21 +19,30 @@ export const CountersList = ({ className }: CountersListProps) => {
   const [currentPage, setCurrentPage] = useState(0);
   const pageCount = Math.ceil(countersCount / 20);
 
-  useEffect(() => {
-    const getData = async () => {
-      const counters = await getCounters({
-        limit: 20,
-        offset: 20 * currentPage,
-      });
+  const getData = useCallback(async () => {
+    const counters = await getCounters({
+      limit: 20,
+      offset: 20 * currentPage,
+    });
 
-      if (!counters) return;
+    if (!counters) return;
 
-      setCounters(counters.data);
-      setCountersCount(counters.count);
-    };
-
-    getData();
+    setCounters(counters.data);
+    setCountersCount(counters.count);
   }, [currentPage]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
+
+  const updateCountersOnDelete = useCallback(
+    (id: string) => {
+      console.log(id);
+
+      getData();
+    },
+    [getData]
+  );
 
   const handlePageNumberClick = useCallback((value: number) => {
     setCurrentPage(value);
@@ -52,7 +61,11 @@ export const CountersList = ({ className }: CountersListProps) => {
                 rowIndex={index + 1}
                 dataRow={data}
                 deleteBtn={
-                  <CounterRowDeleteBtn key={data.id} counterId={data.id} />
+                  <CounterRowDeleteBtn
+                    key={data.id}
+                    counterId={data.id}
+                    onClick={updateCountersOnDelete}
+                  />
                 }
               />
             ))

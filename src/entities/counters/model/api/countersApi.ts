@@ -48,3 +48,17 @@ export const getCounters = async ({ limit, offset }: GetCountersProps) => {
     console.log(error);
   }
 };
+
+interface DeleteCountersProps {
+  id: string;
+}
+
+export const deleteCounter = async ({ id }: DeleteCountersProps) => {
+  try {
+    const response = await $api.delete<{ id: string }>(`/meters/${id}/`);
+
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
