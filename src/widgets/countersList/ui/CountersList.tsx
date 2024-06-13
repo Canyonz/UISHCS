@@ -18,8 +18,8 @@ export const CountersList = observer(({ className }: CountersListProps) => {
   const { counter } = useMst();
 
   const searchParams = new URLSearchParams(window.location.search);
-  const limitParam = Number(searchParams.get('limit'));
-  const offsetParam = Number(searchParams.get('offset'));
+  const limitParam = Number(searchParams.get('limit')) || 20;
+  const offsetParam = Number(searchParams.get('offset')) || 0;
   const initCurrentPage =
     offsetParam !== 0 ? Math.floor(offsetParam / limitParam) : 0;
 
