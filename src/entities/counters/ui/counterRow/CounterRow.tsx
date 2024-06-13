@@ -28,11 +28,13 @@ export const CounterRow = ({
   deleteBtn,
   className,
 }: CounterRowProps) => {
-  const typeData = mapTypeToTypeName[dataRow._type[0]];
+  const typeData = dataRow?._type && mapTypeToTypeName[dataRow?._type[0]];
   const is_automatic = dataRow.is_automatic ? 'Да' : 'Нет';
-  const initial_values = dataRow.initial_values.join(', ');
+  const initial_values = dataRow?.initial_values
+    ? dataRow?.initial_values.join(', ')
+    : '';
 
-  const date = new Date(dataRow.installation_date);
+  const date = new Date(dataRow?.installation_date || '');
   const day = date.getDate().toString().padStart(2, '0');
   const mouth = (date.getMonth() + 1).toString().padStart(2, '0');
   const year = date.getFullYear();
@@ -45,14 +47,18 @@ export const CounterRow = ({
         textAlign="center"
         className={styles.counterCell}
       />
-      <CounterCellType className={styles.counterCell} {...typeData} />
+      {typeData ? (
+        <CounterCellType className={styles.counterCell} {...typeData} />
+      ) : (
+        <div></div>
+      )}
       <TextUI text={installation_date} className={styles.counterCell} />
       <TextUI text={is_automatic} className={styles.counterCell} />
       <TextUI text={initial_values} className={styles.counterCell} />
-      <TextUI text={dataRow.area} className={styles.counterCell} />
+      <TextUI text={dataRow?.area} className={styles.counterCell} />
 
       <TextUI
-        text={dataRow.description}
+        text={dataRow?.description || ''}
         color={'grey'}
         className={styles.counterCell}
       />

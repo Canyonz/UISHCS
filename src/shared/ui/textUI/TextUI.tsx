@@ -6,7 +6,7 @@ type TextUIColor = 'primary' | 'grey' | 'grey-neutral';
 type TextUIAlign = 'left' | 'center' | 'right';
 
 interface TextUIProps {
-  text: string | number;
+  text?: string | number;
   variant?: TextUIVariant;
   color?: TextUIColor;
   textAlign?: TextUIAlign;

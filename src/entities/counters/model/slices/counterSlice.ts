@@ -8,7 +8,7 @@ const Counter = types.model('Counter', {
   is_automatic: types.maybeNull(types.boolean),
   initial_values: types.array(types.number),
   area: types.string,
-  description: types.string,
+  description: types.maybeNull(types.string),
 });
 
 export const CountersStore = types

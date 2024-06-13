@@ -17,12 +17,6 @@ export const PaginationUI = ({
   let ellipsisLeftAdded = false;
   let ellipsisRightAdded = false;
 
-  const ellipsis = (
-    <button key="ellipsis" className={styles.paginationItemEllipsis}>
-      ...
-    </button>
-  );
-
   return (
     <div className={cls(styles.pagination, className)}>
       {new Array(pageCount).fill('').map((_, index) => {
@@ -43,12 +37,20 @@ export const PaginationUI = ({
 
         if (!isVisible && !ellipsisLeftAdded && isVisibleLeftElipsis) {
           ellipsisLeftAdded = true;
-          return ellipsis;
+          return (
+            <button key={index} className={styles.paginationItemEllipsis}>
+              ...
+            </button>
+          );
         }
 
         if (!isVisible && !ellipsisRightAdded && isVisibleRightElipsis) {
           ellipsisRightAdded = true;
-          return ellipsis;
+          return (
+            <button key={index} className={styles.paginationItemEllipsis}>
+              ...
+            </button>
+          );
         }
 
         return (

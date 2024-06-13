@@ -16,23 +16,29 @@ interface CountersListProps {
 
 export const CountersList = observer(({ className }: CountersListProps) => {
   const { counter } = useMst();
-  const [currentPage, setCurrentPage] = useState(0);
-  const pageCount = Math.ceil(counter.count / 20);
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const limitParam = Number(searchParams.get('limit'));
+  const offsetParam = Number(searchParams.get('offset'));
+  const initCurrentPage =
+    offsetParam !== 0 ? Math.floor(offsetParam / limitParam) : 0;
+
+  const [currentPage, setCurrentPage] = useState(initCurrentPage);
+  const [limit, setLimit] = useState(limitParam);
+  const [offset, setOffset] = useState(offsetParam);
+
+  const pageCount = Math.ceil(counter.count / limit);
 
   const getData = useCallback(async () => {
     const counters = await getCounters({
-      limit: 20,
-      offset: 20 * currentPage,
+      limit,
+      offset,
     });
 
     if (!counters) return;
 
     counter.setCounters(counters);
-  }, [counter, currentPage]);
-
-  useEffect(() => {
-    getData();
-  }, [getData]);
+  }, [counter, limit, offset]);
 
   const updateCountersOnDelete = useCallback(
     (id: string) => {
@@ -43,9 +49,25 @@ export const CountersList = observer(({ className }: CountersListProps) => {
     [getData]
   );
 
-  const handlePageNumberClick = useCallback((value: number) => {
-    setCurrentPage(value);
-  }, []);
+  const handlePageNumberClick = useCallback(
+    (value: number) => {
+      const offset = limit * value;
+
+      setOffset(offset);
+      setCurrentPage(value);
+    },
+    [limit]
+  );
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    searchParams.set('limit', limit.toString());
+    searchParams.set('offset', offset.toString());
+
+    window.history.pushState(null, '', `?${searchParams.toString()}`);
+    getData();
+  }, [getData, limit, offset]);
 
   return (
     <section className={cls(styles.countersListLayout, className)}>
